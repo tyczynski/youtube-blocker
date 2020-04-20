@@ -1,0 +1,12 @@
+# dependencies
+node_modules
+
+# editors
+.vscode
+.idea
+
+# addon
+/dist/js/*.js
+
+# yarn
+yarn-error.log
