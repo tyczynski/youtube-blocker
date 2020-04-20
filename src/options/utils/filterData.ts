@@ -1,4 +1,4 @@
-import { ExportedData } from '@src/shared/types';
+import { ExportedData, Storage } from '@src/shared/types';
 import { filterChannels, filterTheme } from '@src/shared/filter';
 
 /**
@@ -7,10 +7,10 @@ import { filterChannels, filterTheme } from '@src/shared/filter';
  * @param {ExportedData} data
  * @returns {ExportedData}
  */
-const filterData = (data: ExportedData): ExportedData => ({
+const filterData = (data: ExportedData): Storage => ({
   theme: filterTheme(data),
   channels: filterChannels(data),
-  quickblock: Boolean(data.quickblock),
+  quickblock: Boolean(data.storage.quickblock),
 });
 
 export default filterData;

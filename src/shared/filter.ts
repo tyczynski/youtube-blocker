@@ -5,9 +5,6 @@ import { isString } from '@src/shared/validator';
 
 /**
  * Check if the data is proper Channel
- *
- * @props {Channel[]}
- * @returns {Chennel[]} filtered array
  */
 const checkChannels = (channels: Channel[]) => {
   return channels.filter(
@@ -20,9 +17,6 @@ const checkChannels = (channels: Channel[]) => {
 
 /**
  * Format passed object to the correct Channel
- *
- * @param {Channel} channel
- * @returns {Channel}
  */
 const formatChannel = (channel: Channel): Channel => ({
   value: channel.value,
@@ -35,24 +29,18 @@ const formatChannel = (channel: Channel): Channel => ({
 
 /**
  * Filter invalid Channel objects
- *
- * @param {PossibleExportedData} data
- * @returns {Channel[]}
  */
 export const filterChannels = (data: PossibleExportedData): Channel[] => {
-  return hop(data, 'channels') && Array.isArray(data.channels)
-    ? checkChannels(data.channels).map(channel => formatChannel(channel))
+  return hop(data.storage, 'channels') && Array.isArray(data.storage.channels)
+    ? checkChannels(data.storage.channels).map(channel => formatChannel(channel))
     : [];
 };
 
 /**
  * Filter invalid Theme string
- *
- * @param {PossibleExportedData} data
- * @returns {Theme}
  */
 export const filterTheme = (data: PossibleExportedData): Theme => {
-  return hop(data, 'theme') && themes.includes(data.theme as Theme)
-    ? (data.theme as Theme)
+  return hop(data.storage, 'theme') && themes.includes(data.storage.theme as Theme)
+    ? (data.storage.theme as Theme)
     : defaultTheme;
 };

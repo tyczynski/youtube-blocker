@@ -1,32 +1,35 @@
 import dayjs from 'dayjs';
 import { browser } from 'webextension-polyfill-ts';
-import { PossibleExportedData } from '@src/shared/types';
+import { EXTENSION_VERSION } from '@src/shared/constants';
+import { PossibleExportedData, Storage } from '@src/shared/types';
 import { filterChannels, filterTheme } from '@src/shared/filter';
 
 /**
  * Prepare data from storage to export
- *
- * @param {PossibleExportedData} data
- * @returns {string}
  */
 const prepareData = (data: PossibleExportedData): string => {
   return encodeURIComponent(
     JSON.stringify({
-      channels: filterChannels(data),
-      theme: filterTheme(data),
-      quickblock: Boolean(data.quickblock),
+      version: data.version,
+      storage: {
+        channels: filterChannels(data),
+        theme: filterTheme(data),
+        quickblock: Boolean(data.storage.quickblock),
+      },
     }),
   );
 };
 
 /**
  * Create JSON file with data to download
- *
- * @returns {Promise}
  */
 const exportData = async () => {
   try {
-    const data = await browser.storage.local.get(['channels', 'theme', 'quickblock']);
+    const storage = await browser.storage.local.get(['channels', 'theme', 'quickblock']);
+    const data = {
+      version: EXTENSION_VERSION,
+      storage: storage,
+    };
 
     const config = {
       filename: `youtube_blocker_export_${dayjs().format('YYYY-MM-DD_HHmmss')}`,

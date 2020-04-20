@@ -13,14 +13,18 @@ export interface Channel {
   value: string;
 }
 
-export interface ExportedData {
-  channels: Channel[];
-  theme: Theme;
+export interface Storage {
+  channels: any[];
+  theme: string;
   quickblock: boolean;
 }
 
+export interface ExportedData {
+  version: string;
+  storage: Storage;
+}
+
 export interface PossibleExportedData {
-  channels?: any[];
-  theme?: string;
-  quickblock?: boolean;
+  version: string;
+  storage: Partial<Storage>;
 }
