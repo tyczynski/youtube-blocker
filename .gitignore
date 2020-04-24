@@ -5,6 +5,9 @@ node_modules
 .vscode
 .idea
 
+# os
+.DS_Store
+
 # addon
 /dist/js/*.js
 
