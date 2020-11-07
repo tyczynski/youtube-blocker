@@ -1,6 +1,6 @@
-const path = require('path');
+const path = require('path')
 
-const root = [__dirname, '..'];
+const root = [__dirname, '..']
 
 module.exports = {
   entry: {
@@ -28,4 +28,4 @@ module.exports = {
       '@popup': path.resolve(...root, 'src/popup'),
     },
   },
-};
+}

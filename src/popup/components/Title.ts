@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 const Title = styled.h2<{ monospace?: boolean }>`
   font-size: 12px;
@@ -7,15 +7,15 @@ const Title = styled.h2<{ monospace?: boolean }>`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  color: ${props => props.theme.color.text.faded};
-  ${props => props.theme.transition('color', 'letter-spacing')};
+  color: ${(props) => props.theme.color.text.faded};
+  ${(props) => props.theme.transition('color', 'letter-spacing')};
 
-  ${props =>
+  ${(props) =>
     props.monospace &&
     css`
       font-family: monospace;
       letter-spacing: 0.1px;
     `}
-`;
+`
 
-export default Title;
+export default Title

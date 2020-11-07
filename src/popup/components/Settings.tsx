@@ -1,21 +1,21 @@
-import React, { useContext } from 'react';
-import styled from 'styled-components';
-import Context from '@popup/store/store';
-import { browser } from 'webextension-polyfill-ts';
-import { ActionButton, Title, Checkbox } from '@popup/components';
-import { Export, Import } from '@popup/assets/icons';
-import { exportData } from '@popup/store';
+import React, { useContext } from 'react'
+import styled from 'styled-components'
+import Context from '@popup/store/store'
+import { browser } from 'webextension-polyfill-ts'
+import { ActionButton, Title, Checkbox } from '@popup/components'
+import { Export, Import } from '@popup/assets/icons'
+import { exportData } from '@popup/store'
 
 const Container = styled.div`
   width: 100%;
   padding: 8px;
-`;
+`
 
 const List = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
-`;
+`
 
 const ListItem = styled.li`
   display: flex;
@@ -26,22 +26,22 @@ const ListItem = styled.li`
 
   &:hover {
     h2 {
-      color: ${props => props.theme.color.text.normal};
+      color: ${(props) => props.theme.color.text.normal};
     }
   }
-`;
+`
 
 const Separator = styled.hr`
   margin: 8px 16px;
   border: 0;
-  border-bottom: 1px solid ${props => props.theme.color.border.normal};
-  ${props => props.theme.transition('border-color')};
-`;
+  border-bottom: 1px solid ${(props) => props.theme.color.border.normal};
+  ${(props) => props.theme.transition('border-color')};
+`
 
 const Settings: React.FC = () => {
-  const store = useContext(Context);
-  const isDark = store.theme === 'dark';
-  const isQuickBlock = store.quickblock;
+  const store = useContext(Context)
+  const isDark = store.theme === 'dark'
+  const isQuickBlock = store.quickblock
 
   return (
     <Container>
@@ -66,7 +66,7 @@ const Settings: React.FC = () => {
           <Checkbox
             checked={isDark}
             onChange={(value: boolean) => {
-              store.setTheme(value ? 'dark' : 'light');
+              store.setTheme(value ? 'dark' : 'light')
             }}
           />
         </ListItem>
@@ -75,13 +75,13 @@ const Settings: React.FC = () => {
           <Checkbox
             checked={isQuickBlock}
             onChange={(value: boolean) => {
-              store.setQuickBlock(value);
+              store.setQuickBlock(value)
             }}
           />
         </ListItem>
       </List>
     </Container>
-  );
-};
+  )
+}
 
-export default Settings;
+export default Settings

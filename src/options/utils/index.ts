@@ -1,4 +1,4 @@
-import readFile from './readFile';
-import filterData from './filterData';
+import readFile from './readFile'
+import filterData from './filterData'
 
-export { readFile, filterData };
+export { readFile, filterData }

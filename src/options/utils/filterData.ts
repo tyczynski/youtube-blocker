@@ -1,5 +1,5 @@
-import { ExportedData, Storage } from '@src/shared/types';
-import { filterChannels, filterTheme } from '@src/shared/filter';
+import { ExportedData, Storage } from '@src/shared/types'
+import { filterChannels, filterTheme } from '@src/shared/filter'
 
 /**
  * Filter data from imported object
@@ -11,6 +11,6 @@ const filterData = (data: ExportedData): Storage => ({
   theme: filterTheme(data),
   channels: filterChannels(data),
   quickblock: Boolean(data.storage.quickblock),
-});
+})
 
-export default filterData;
+export default filterData

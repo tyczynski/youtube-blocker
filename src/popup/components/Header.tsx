@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
-import styled, { css, ThemeContext } from 'styled-components';
-import Context from '@popup/store/store';
-import { Cog, Cross, Logo } from '@popup/assets/icons';
-import IconButton from './IconButton';
+import React, { useContext } from 'react'
+import styled, { css, ThemeContext } from 'styled-components'
+import Context from '@popup/store/store'
+import { Cog, Cross, Logo } from '@popup/assets/icons'
+import IconButton from './IconButton'
 
 const Container = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 24px;
-  border-bottom: 1px solid ${props => props.theme.color.border.normal};
-  ${props => props.theme.transition('border-color')};
-`;
+  border-bottom: 1px solid ${(props) => props.theme.color.border.normal};
+  ${(props) => props.theme.transition('border-color')};
+`
 
 const Button = styled(IconButton)<{ transformed: boolean }>`
   position: relative;
@@ -24,7 +24,7 @@ const Button = styled(IconButton)<{ transformed: boolean }>`
     width: 100%;
     height: 100%;
     padding: 4px;
-    ${props => props.theme.transition('transform')};
+    ${(props) => props.theme.transition('transform')};
   }
 
   svg {
@@ -32,7 +32,7 @@ const Button = styled(IconButton)<{ transformed: boolean }>`
     fill: #626066;
     left: 50%;
     top: 50%;
-    ${props => props.theme.transition('opacity')};
+    ${(props) => props.theme.transition('opacity')};
 
     &:first-child {
       transform: translate(-50%, -50%);
@@ -45,7 +45,7 @@ const Button = styled(IconButton)<{ transformed: boolean }>`
     }
   }
 
-  ${props =>
+  ${(props) =>
     props.transformed &&
     css`
       svg {
@@ -62,24 +62,27 @@ const Button = styled(IconButton)<{ transformed: boolean }>`
         transform: translateY(calc(-100% + 2px));
       }
     `}
-`;
+`
 
 const Header: React.FC = () => {
-  const store = useContext(Context);
-  const theme = useContext(ThemeContext);
-  const view = store.view === 'channels' ? 'settings' : 'channels';
+  const store = useContext(Context)
+  const theme = useContext(ThemeContext)
+  const view = store.view === 'channels' ? 'settings' : 'channels'
 
   return (
     <Container>
       <Logo color={store.theme === 'dark' ? '#fff' : theme.color.text.normal} />
-      <Button transformed={store.view === 'settings'} onClick={() => store.setView(view)}>
+      <Button
+        transformed={store.view === 'settings'}
+        onClick={() => store.setView(view)}
+      >
         <span>
           <Cog />
           <Cross />
         </span>
       </Button>
     </Container>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

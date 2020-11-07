@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
-import styled from 'styled-components';
-import Context from '@popup/store/store';
-import { Skeleton } from '@popup/components';
-import Item from './components/ListItem';
-import NoItems from './components/NoItems';
+import React, { useContext } from 'react'
+import styled from 'styled-components'
+import Context from '@popup/store/store'
+import { Skeleton } from '@popup/components'
+import Item from './components/ListItem'
+import NoItems from './components/NoItems'
 
 const Items = styled.ul`
   display: block;
@@ -12,10 +12,10 @@ const Items = styled.ul`
   list-style: none;
   height: 100%;
   overflow: auto;
-`;
+`
 
 const List: React.FC<{ prepared: boolean }> = ({ prepared }) => {
-  const store = useContext(Context);
+  const store = useContext(Context)
 
   return (
     <>
@@ -24,14 +24,16 @@ const List: React.FC<{ prepared: boolean }> = ({ prepared }) => {
           {!prepared ? (
             <Skeleton />
           ) : (
-            store.channels.map(channel => <Item key={channel.value} data={channel} />)
+            store.channels.map((channel) => (
+              <Item key={channel.value} data={channel} />
+            ))
           )}
         </Items>
       ) : (
         <NoItems />
       )}
     </>
-  );
-};
+  )
+}
 
-export default List;
+export default List

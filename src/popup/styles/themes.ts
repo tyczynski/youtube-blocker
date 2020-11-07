@@ -17,7 +17,7 @@ export const light = {
     },
     custom: {},
   },
-};
+}
 
 light.color.custom = {
   badge: {
@@ -26,7 +26,7 @@ light.color.custom = {
   content: {
     background: light.color.background.accent,
   },
-};
+}
 
 export const dark = {
   type: 'dark',
@@ -52,8 +52,8 @@ export const dark = {
       content: {},
     },
   },
-};
+}
 
 dark.color.custom.content = {
   background: dark.color.background.normal,
-};
+}

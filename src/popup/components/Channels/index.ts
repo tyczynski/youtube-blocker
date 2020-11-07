@@ -1,3 +1,3 @@
-import Channels from './Channels';
+import Channels from './Channels'
 
-export default Channels;
+export default Channels

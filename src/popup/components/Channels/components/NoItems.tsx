@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import styled, { ThemeContext } from 'styled-components';
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components'
 
 const Container = styled.div`
   display: flex;
@@ -12,9 +12,9 @@ const Container = styled.div`
 
   svg {
     margin: 0 0 24px;
-    ${props => props.theme.transition('stroke', 'fill')};
+    ${(props) => props.theme.transition('stroke', 'fill')};
   }
-`;
+`
 
 const TextBig = styled.p`
   font-size: 16px;
@@ -22,24 +22,29 @@ const TextBig = styled.p`
   font-weight: 600;
   margin: 0 0 4px;
   text-align: center;
-  ${props => props.theme.transition('color')};
-`;
+  ${(props) => props.theme.transition('color')};
+`
 
 const TextSmall = styled.p`
   font-size: 12px;
   line-height: 14px;
   text-align: center;
   margin: 0;
-  color: ${props => props.theme.color.text.faded};
-  ${props => props.theme.transition('color')};
-`;
+  color: ${(props) => props.theme.color.text.faded};
+  ${(props) => props.theme.transition('color')};
+`
 
 const NoItems: React.FC = () => {
-  const theme = useContext(ThemeContext);
+  const theme = useContext(ThemeContext)
 
   return (
     <Container>
-      <svg width="80px" height="63px" viewBox="0 0 80 66" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        width="80px"
+        height="63px"
+        viewBox="0 0 80 66"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <g fillRule="nonzero" fill="none">
           <path
             d="m25.075 63c0-8.5604 6.9496-15.5 15.522-15.5s15.522 6.9396 15.522 15.5"
@@ -74,7 +79,7 @@ const NoItems: React.FC = () => {
         Add a channel name you don't want to see on YouTube.
       </TextSmall>
     </Container>
-  );
-};
+  )
+}
 
-export default NoItems;
+export default NoItems

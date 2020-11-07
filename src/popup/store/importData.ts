@@ -1,5 +1,5 @@
-import { Storage } from '@src/shared/types';
-import { browser } from 'webextension-polyfill-ts';
+import { Storage } from '@src/shared/types'
+import { browser } from 'webextension-polyfill-ts'
 
 /**
  * Set the data in the browser.storage.local
@@ -10,11 +10,11 @@ const importData = async (data: Storage): Promise<void> => {
       channels: data.channels,
       theme: data.theme,
       quickblock: data.quickblock,
-    });
-    return Promise.resolve();
+    })
+    return Promise.resolve()
   } catch (error) {
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
-};
+}
 
-export default importData;
+export default importData
