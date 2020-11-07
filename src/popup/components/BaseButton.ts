@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const BaseButton = styled.button`
   border: 0;
@@ -12,6 +12,6 @@ const BaseButton = styled.button`
   &:active {
     outline: none;
   }
-`;
+`
 
-export default BaseButton;
+export default BaseButton

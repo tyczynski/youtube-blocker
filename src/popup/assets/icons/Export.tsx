@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const Export: React.FC = () => (
   <svg width="10px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 12">
@@ -7,6 +7,6 @@ const Export: React.FC = () => (
       <path d="M3.896 2.64a.532.532 0 00.376-.156l.666-.663V7.207c0 .293.239.53.533.53a.53.53 0 00.532-.53V1.785l.702.699a.532.532 0 00.753 0 .527.527 0 000-.749L5.868.155A.531.531 0 005.494 0H5.484a.531.531 0 00-.376.155L3.52 1.735a.527.527 0 00.377.904z" />
     </g>
   </svg>
-);
+)
 
-export default Export;
+export default Export

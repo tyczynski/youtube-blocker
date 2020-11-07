@@ -6,4 +6,4 @@
  * @returns {boolean}
  */
 export const hop = (obj: object, key: string): boolean =>
-  Object.prototype.hasOwnProperty.call(obj, key);
+  Object.prototype.hasOwnProperty.call(obj, key)

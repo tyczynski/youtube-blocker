@@ -1,30 +1,30 @@
-import React from 'react';
-import { browser } from 'webextension-polyfill-ts';
-import { Channel, Theme } from '@src/shared/types';
+import React from 'react'
+import { browser } from 'webextension-polyfill-ts'
+import { Channel, Theme } from '@src/shared/types'
 
-export type View = 'channels' | 'settings';
+export type View = 'channels' | 'settings'
 
 export interface State {
-  view: View;
-  channels: Channel[];
-  active: Channel | null;
-  theme: Theme;
-  quickblock: boolean;
+  view: View
+  channels: Channel[]
+  active: Channel | null
+  theme: Theme
+  quickblock: boolean
 }
 
 export interface ContextProps extends State {
-  addChannel: (payload: Channel) => void;
-  removeChannel: (payload: Channel) => void;
-  activeChannel: (payload: Channel | null) => void;
-  updateChannel: (payload: Channel) => void;
-  setView: (payload: View) => void;
-  setTheme: (payload: Theme) => void;
-  setQuickBlock: (payload: boolean) => void;
+  addChannel: (payload: Channel) => void
+  removeChannel: (payload: Channel) => void
+  activeChannel: (payload: Channel | null) => void
+  updateChannel: (payload: Channel) => void
+  setView: (payload: View) => void
+  setTheme: (payload: Theme) => void
+  setQuickBlock: (payload: boolean) => void
 }
 
 export interface Action {
-  type: string;
-  payload: any;
+  type: string
+  payload: any
 }
 
 export const preloadedState: State = {
@@ -33,7 +33,7 @@ export const preloadedState: State = {
   active: null,
   theme: 'light',
   quickblock: true,
-};
+}
 
 export const preloadedContext: ContextProps = {
   ...preloadedState,
@@ -44,11 +44,11 @@ export const preloadedContext: ContextProps = {
   setView: () => {},
   setTheme: () => {},
   setQuickBlock: () => {},
-};
+}
 
 const setChannels = (channels: Channel[]) => {
-  browser.storage.local.set({ channels });
-};
+  browser.storage.local.set({ channels })
+}
 
 export const reducer = (state: State, action: Action) => {
   switch (action.type) {
@@ -56,85 +56,89 @@ export const reducer = (state: State, action: Action) => {
       return {
         ...state,
         channels: action.payload,
-      };
+      }
     case 'ADD_CHANNEL': {
-      const { payload } = action;
-      const exists = Boolean(state.channels.find(item => item.value === payload.value));
+      const { payload } = action
+      const exists = Boolean(
+        state.channels.find((item) => item.value === payload.value)
+      )
 
       if (!exists) {
-        const channels = [...state.channels, payload];
-        setChannels(channels);
+        const channels = [...state.channels, payload]
+        setChannels(channels)
 
         return {
           ...state,
           channels,
-        };
+        }
       }
 
-      return state;
+      return state
     }
     case 'REMOVE_CHANNEL': {
-      const { payload } = action;
-      const channels = state.channels.filter(item => payload.value !== item.value);
+      const { payload } = action
+      const channels = state.channels.filter(
+        (item) => payload.value !== item.value
+      )
 
-      setChannels(channels);
+      setChannels(channels)
 
       return {
         ...state,
         channels,
-      };
+      }
     }
     case 'ACTIVE_CHANNEL': {
       return {
         ...state,
         active: action.payload,
-      };
+      }
     }
     case 'UPDATE_CHANNEL': {
-      const { payload } = action;
-      const channels = state.channels.map(item => {
+      const { payload } = action
+      const channels = state.channels.map((item) => {
         if (item.value === state.active.value) {
-          return payload;
+          return payload
         }
 
-        return item;
-      });
+        return item
+      })
 
-      setChannels(channels);
+      setChannels(channels)
 
       return {
         ...state,
         channels,
         active: null,
-      };
+      }
     }
     case 'SET_THEME': {
-      browser.storage.local.set({ theme: action.payload });
+      browser.storage.local.set({ theme: action.payload })
 
       return {
         ...state,
         theme: action.payload,
-      };
+      }
     }
     case 'SET_QUICKBLOCK': {
-      browser.storage.local.set({ quickblock: action.payload });
+      browser.storage.local.set({ quickblock: action.payload })
 
       return {
         ...state,
         quickblock: action.payload,
-      };
+      }
     }
     case 'SET_VIEW': {
       return {
         ...state,
         view: action.payload,
-      };
+      }
     }
     default: {
-      return state;
+      return state
     }
   }
-};
+}
 
-const Context = React.createContext<ContextProps>(preloadedContext);
-export default Context;
+const Context = React.createContext<ContextProps>(preloadedContext)
+export default Context
