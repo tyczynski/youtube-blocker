@@ -7,7 +7,6 @@ import Settings from './Settings'
 import Manager from './Manager'
 import ActionButton from './ActionButton'
 import Title from './Title'
-import Checkbox from './Checkbox'
 import Skeleton from './Skeleton'
 
 export {
@@ -19,7 +18,6 @@ export {
   Manager,
   ActionButton,
   Title,
-  Checkbox,
   Skeleton,
   BaseButton,
 }

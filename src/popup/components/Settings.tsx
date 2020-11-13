@@ -2,7 +2,8 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import Context from '@popup/store/store'
 import { browser } from 'webextension-polyfill-ts'
-import { ActionButton, Title, Checkbox } from '@popup/components'
+import { ActionButton, Title } from '@popup/components'
+import { SwitchCheckbox } from '@popup/components/ui'
 import { Export, Import } from '@popup/assets/icons'
 import { exportData } from '@popup/store'
 
@@ -63,7 +64,7 @@ const Settings: React.FC = () => {
       <List>
         <ListItem>
           <Title>Dark mode</Title>
-          <Checkbox
+          <SwitchCheckbox
             checked={isDark}
             onChange={(value: boolean) => {
               store.setTheme(value ? 'dark' : 'light')
@@ -72,7 +73,7 @@ const Settings: React.FC = () => {
         </ListItem>
         <ListItem>
           <Title>Show "quick block" button</Title>
-          <Checkbox
+          <SwitchCheckbox
             checked={isQuickBlock}
             onChange={(value: boolean) => {
               store.setQuickBlock(value)
