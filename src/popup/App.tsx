@@ -9,15 +9,11 @@ import Context, {
 } from '@popup/store/store'
 import { Channel, Theme } from '@src/shared/types'
 import styled, { ThemeProvider, css } from 'styled-components'
-import { GlobalStyles, themes, utils } from '@popup/styles'
-import {
-  Container,
-  Header,
-  Channels,
-  Settings,
-  Manager,
-} from '@popup/components'
+import { GlobalStyle, themes, utils } from '@popup/styles'
+import { Container, Header, Manager } from '@popup/components'
 import { Copyrights } from '@popup/components/common/Copyrights'
+
+import { ChannelsView, SettingsView } from '@popup/components/views'
 
 const Content = styled.div<{ settings: boolean }>`
   display: grid;
@@ -81,9 +77,7 @@ const App: React.FC = () => {
           dispatch({ type: 'SET_THEME', payload: theme })
         }
 
-        setTimeout(() => {
-          setPrepare(true)
-        }, 800)
+        setPrepare(true)
       })
   }, [])
 
@@ -129,13 +123,14 @@ const App: React.FC = () => {
         setView,
       }}
     >
-      <GlobalStyles />
+      <GlobalStyle />
+
       <ThemeProvider theme={{ ...themes[state.theme as Theme], ...utils }}>
         <Container settings={state.view === 'settings'}>
           <Header />
           <Content settings={state.view === 'settings'}>
-            <Channels prepared={prepare} />
-            <Settings />
+            <ChannelsView prepared={prepare} />
+            <SettingsView />
           </Content>
           <Footer settings={state.view === 'settings'}>
             <div>

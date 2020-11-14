@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
 
-const GlobalStyles = createGlobalStyle`
+/**
+ * Globals and reset styles
+ */
+export const GlobalStyle = createGlobalStyle`
   * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -28,5 +31,3 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
   }
 `
-
-export default GlobalStyles
