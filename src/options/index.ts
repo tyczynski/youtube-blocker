@@ -9,7 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault()
-    const file = input.files[0]
+    const { files } = input
+    let file
+
+    if (files instanceof FileList) {
+      file = files[0]
+    }
 
     if (file instanceof File) {
       try {

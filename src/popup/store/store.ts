@@ -37,13 +37,27 @@ export const preloadedState: State = {
 
 export const preloadedContext: ContextProps = {
   ...preloadedState,
-  addChannel: () => {},
-  removeChannel: () => {},
-  activeChannel: () => {},
-  updateChannel: () => {},
-  setView: () => {},
-  setTheme: () => {},
-  setQuickBlock: () => {},
+  addChannel: () => {
+    /* do nothing */
+  },
+  removeChannel: () => {
+    /* do nothing */
+  },
+  activeChannel: () => {
+    /* do nothing */
+  },
+  updateChannel: () => {
+    /* do nothing */
+  },
+  setView: () => {
+    /* do nothing */
+  },
+  setTheme: () => {
+    /* do nothing */
+  },
+  setQuickBlock: () => {
+    /* do nothing */
+  },
 }
 
 const setChannels = (channels: Channel[]) => {
@@ -97,7 +111,7 @@ export const reducer = (state: State, action: Action) => {
     case 'UPDATE_CHANNEL': {
       const { payload } = action
       const channels = state.channels.map((item) => {
-        if (item.value === state.active.value) {
+        if (state.active && item.value === state.active.value) {
           return payload
         }
 

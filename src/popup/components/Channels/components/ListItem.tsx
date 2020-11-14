@@ -53,7 +53,7 @@ const hover = css`
   }
 `
 
-const Container = styled.li<{ faded: boolean; active: boolean }>`
+const Container = styled.li<{ $faded: boolean; $active: boolean }>`
   --buttons-width: 52px;
   display: flex;
   align-items: center;
@@ -72,14 +72,14 @@ const Container = styled.li<{ faded: boolean; active: boolean }>`
     width: var(--buttons-width);
   }
 
-  ${({ faded }) =>
-    faded &&
+  ${({ $faded }) =>
+    $faded &&
     css`
       opacity: 0.3;
       pointer-events: none;
     `}
 
-  ${({ active }) => active && hover}
+  ${({ $active }) => $active && hover}
 
   &:hover {
     ${hover}
@@ -107,8 +107,8 @@ const Toggle: React.FC<{ active: boolean }> = ({ active }) => (
 
 const Item: React.FC<{ data: Channel }> = ({ data }) => {
   const store = useContext(Context)
-  const isActive = store.active && data.value === store.active.value
-  const isFaded = store.active && data.value !== store.active.value
+  const isActive = Boolean(store.active && data.value === store.active.value)
+  const isFaded = Boolean(store.active && data.value !== store.active.value)
   const isRegex = data.mode === 'regex'
 
   const handleActionClick = () => {
@@ -124,7 +124,7 @@ const Item: React.FC<{ data: Channel }> = ({ data }) => {
   }
 
   return (
-    <Container faded={isFaded} active={isActive}>
+    <Container $faded={isFaded} $active={isActive}>
       <Col>
         <Title monospace={isRegex}>
           {isRegex ? `/${data.value}/` : data.value}

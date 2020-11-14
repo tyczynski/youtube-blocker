@@ -28,8 +28,10 @@ export default class Content {
   constructor() {
     this.mutationCallback = this.mutationCallback.bind(this)
     this.channels = []
-    this.container = document.querySelector('ytd-page-manager')
+    this.container = document.querySelector('ytd-page-manager') as HTMLElement
     this.observer = new MutationObserver(this.mutationCallback)
+    this.rawChannels = []
+    this.settings = { quickblock: false }
 
     this.observer.observe(this.container, { childList: true, subtree: true })
   }
@@ -41,11 +43,11 @@ export default class Content {
 
   public update(channels?: Channel[], quickblock?: boolean): void {
     if (channels !== null) {
-      this.setChannels(channels)
+      this.setChannels(channels || [])
       this.mutationCallback()
     }
 
-    if (quickblock !== null) {
+    if (quickblock !== null && quickblock !== undefined) {
       const videos = this.container.querySelectorAll(videosSelector)
 
       if (quickblock) {
@@ -114,7 +116,8 @@ export default class Content {
 
       button.addEventListener('click', () => this.blockChannel(video))
 
-      video.querySelector('ytd-thumbnail').prepend(button)
+      const thumbnail = video.querySelector('ytd-thumbnail') as HTMLElement
+      thumbnail.prepend(button)
       video.__ytblckaddon__quickblock = true
     }
   }
@@ -141,7 +144,6 @@ export default class Content {
     }
 
     const channels = [...this.rawChannels, blockedChannel]
-    console.log(channels)
 
     browser.storage.local.set({ channels })
   }
@@ -161,7 +163,7 @@ export default class Content {
 
       for (let j = 0; j < this.channels.length; j += 1) {
         const channel = this.channels[j]
-        this[channel.method](name.textContent, video, channel)
+        this[channel.method](name.textContent || '', video, channel)
       }
     }
   }

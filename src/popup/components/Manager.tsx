@@ -178,9 +178,9 @@ const Manager: React.FC = () => {
   const [entryValue, setValue] = useState('')
   const [entryModifiers, setModifiers] = useState(initModifiers)
 
-  const typesUnderlineRef = useRef(null)
-  const inputRef = useRef(null)
-  const typesRefs: (HTMLButtonElement | null)[] = []
+  const typesUnderlineRef = useRef<HTMLSpanElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const typesRefs: HTMLButtonElement[] = []
   const isRegex = entryMode === 'regex'
   const modifiersLetters = modifiers
     .filter((m) => entryModifiers[m])
@@ -188,7 +188,11 @@ const Manager: React.FC = () => {
     .join('')
 
   const moveTypeUnderline = (index: number) => {
-    if (typesUnderlineRef.current !== null && index > -1) {
+    if (
+      typesUnderlineRef.current !== null &&
+      index > -1 &&
+      typesUnderlineRef.current instanceof HTMLSpanElement
+    ) {
       typesUnderlineRef.current.style.width = `${typesRefs[index].offsetWidth}px`
       typesUnderlineRef.current.style.transform = `translateX(${typesRefs[index].offsetLeft}px)`
     }
@@ -211,7 +215,9 @@ const Manager: React.FC = () => {
       setValue(store.active.value)
       setModifiers(store.active.modifiers)
       handleTypeClick(store.active.mode)
-      inputRef.current.focus()
+      if (inputRef.current instanceof HTMLInputElement) {
+        inputRef.current.focus()
+      }
     }
   }, [store.active])
 
@@ -220,7 +226,11 @@ const Manager: React.FC = () => {
    * starts to type the channel name in "regex" mode.
    */
   useEffect(() => {
-    if (isRegex && entryValue.length === 1) {
+    if (
+      isRegex &&
+      entryValue.length === 1 &&
+      inputRef.current instanceof HTMLInputElement
+    ) {
       inputRef.current.focus()
       inputRef.current.setSelectionRange(2, 2)
     }
@@ -294,7 +304,7 @@ const Manager: React.FC = () => {
         {modes.map((mode, index) => (
           <TypeButton
             active={mode === entryMode}
-            ref={(node) => (typesRefs[index] = node)}
+            ref={(node) => (typesRefs[index] = node as HTMLButtonElement)}
             key={mode}
             onClick={() => handleTypeClick(mode)}
             type="button"
