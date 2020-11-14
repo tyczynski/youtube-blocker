@@ -9,7 +9,7 @@ import Context, {
 } from '@popup/store/store'
 import { Channel, Theme } from '@src/shared/types'
 import styled, { ThemeProvider, css } from 'styled-components'
-import { GlobalStyles, themes, transition } from '@popup/styles'
+import { GlobalStyles, themes, utils } from '@popup/styles'
 import {
   Container,
   Header,
@@ -17,6 +17,7 @@ import {
   Settings,
   Manager,
 } from '@popup/components'
+import { Copyrights } from '@popup/components/common/Copyrights'
 
 const Content = styled.div<{ settings: boolean }>`
   display: grid;
@@ -64,19 +65,6 @@ const Footer = styled.div<{ settings: boolean }>`
     `}
 `
 
-const Copyrights = styled.p`
-  margin: 0 0 16px;
-  text-align: center;
-  font-size: 10px;
-  color: ${(props) => props.theme.color.text.faded};
-  ${(props) => props.theme.transition('color')};
-
-  a {
-    color: inherit;
-    text-decoration: underline;
-  }
-`
-
 const App: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, preloadedState)
   const [prepare, setPrepare] = useState(false)
@@ -107,7 +95,7 @@ const App: React.FC = () => {
     dispatch({ type: 'REMOVE_CHANNEL', payload })
   }
 
-  const activeChannel = (payload: Channel) => {
+  const activeChannel = (payload: Channel | null) => {
     dispatch({ type: 'ACTIVE_CHANNEL', payload })
   }
 
@@ -142,7 +130,7 @@ const App: React.FC = () => {
       }}
     >
       <GlobalStyles />
-      <ThemeProvider theme={{ ...themes[state.theme as Theme], transition }}>
+      <ThemeProvider theme={{ ...themes[state.theme as Theme], ...utils }}>
         <Container settings={state.view === 'settings'}>
           <Header />
           <Content settings={state.view === 'settings'}>
@@ -151,16 +139,7 @@ const App: React.FC = () => {
           </Content>
           <Footer settings={state.view === 'settings'}>
             <div>
-              <Copyrights>
-                Coded by{' '}
-                <a href="https://github.com/tyczynski" target="_blank">
-                  PT
-                </a>
-                . Designed by{' '}
-                <a href="https://kyosk.studio" target="_blank">
-                  kyosk.studio
-                </a>
-              </Copyrights>
+              <Copyrights />
               <Manager />
             </div>
           </Footer>

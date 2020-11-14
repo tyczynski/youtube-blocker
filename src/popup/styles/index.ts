@@ -1,5 +1,5 @@
 import GlobalStyles from './GlobalStyles'
 import * as themes from './themes'
-import transition from './transition'
+import * as utils from './utils'
 
-export { GlobalStyles, themes, transition }
+export { GlobalStyles, themes, utils }

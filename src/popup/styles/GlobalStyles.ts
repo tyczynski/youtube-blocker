@@ -12,9 +12,17 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
+  /**
+   * 1. 1rem === 10px
+   */
+  html {
+    font-size: 62.5%; /* 1 */
+    user-select: none;
+  }
+
   body {
     font-family: 'Inter', sans-serif;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 400;
     margin: 0;
     padding: 0;
