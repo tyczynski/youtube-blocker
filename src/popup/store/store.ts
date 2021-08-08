@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react'
 import { browser } from 'webextension-polyfill-ts'
 import { Channel, Theme } from '@src/shared/types'
@@ -37,12 +38,19 @@ export const preloadedState: State = {
 
 export const preloadedContext: ContextProps = {
   ...preloadedState,
+  // @ts-ignore
   addChannel: () => {},
+  // @ts-ignore
   removeChannel: () => {},
+  // @ts-ignore
   activeChannel: () => {},
+  // @ts-ignore
   updateChannel: () => {},
+  // @ts-ignore
   setView: () => {},
+  // @ts-ignore
   setTheme: () => {},
+  // @ts-ignore
   setQuickBlock: () => {},
 }
 
@@ -97,6 +105,7 @@ export const reducer = (state: State, action: Action) => {
     case 'UPDATE_CHANNEL': {
       const { payload } = action
       const channels = state.channels.map((item) => {
+        // @ts-ignore
         if (item.value === state.active.value) {
           return payload
         }
