@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import { browser } from 'webextension-polyfill-ts'
 import { EXTENSION_VERSION } from '@src/shared/constants'
-import { PossibleExportedData, Storage } from '@src/shared/types'
+import { PossibleExportedData } from '@src/shared/types'
 import { filterChannels, filterTheme } from '@src/shared/filter'
 
 /**
