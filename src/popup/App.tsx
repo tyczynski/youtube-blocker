@@ -134,6 +134,7 @@ const App: React.FC = () => {
         ...state,
         addChannel,
         removeChannel,
+        // @ts-ignore
         activeChannel,
         updateChannel,
         setTheme,
@@ -153,10 +154,14 @@ const App: React.FC = () => {
             <div>
               <Copyrights>
                 Coded by{' '}
+                {/* @ts-ignore */}
+                {/* eslint-disable-next-line react/jsx-no-target-blank */}
                 <a href="https://github.com/tyczynski" target="_blank">
                   PT
                 </a>
                 . Designed by{' '}
+                {/* @ts-ignore */}
+                {/* eslint-disable-next-line react/jsx-no-target-blank */}
                 <a href="https://kyosk.studio" target="_blank">
                   kyosk.studio
                 </a>
