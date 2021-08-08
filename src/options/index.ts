@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault()
-    // @ts-ignore
     const file = input.files[0]
 
     if (file instanceof File) {

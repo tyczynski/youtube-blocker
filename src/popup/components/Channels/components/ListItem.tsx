@@ -124,7 +124,6 @@ const Item: React.FC<{ data: Channel }> = ({ data }) => {
   }
 
   return (
-    // @ts-ignore
     <Container faded={isFaded} active={isActive}>
       <Col>
         <Title monospace={isRegex}>
@@ -133,13 +132,10 @@ const Item: React.FC<{ data: Channel }> = ({ data }) => {
         <Badge>{isRegex ? 'reg' : data.mode}</Badge>
       </Col>
       <Col>
-        {/* @ts-ignore */}
         <EditButton hidden={isActive} onClick={handleEditClick}>
           <Pen />
         </EditButton>
-        {/* @ts-ignore */}
         <ActionButton onClick={handleActionClick}>
-          {/* @ts-ignore */}
           <Toggle active={isActive} />
         </ActionButton>
       </Col>
