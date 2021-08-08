@@ -189,9 +189,7 @@ const Manager: React.FC = () => {
 
   const moveTypeUnderline = (index: number) => {
     if (typesUnderlineRef.current !== null && index > -1) {
-      // @ts-ignore
       typesUnderlineRef.current.style.width = `${typesRefs[index].offsetWidth}px`
-      // @ts-ignore
       typesUnderlineRef.current.style.transform = `translateX(${typesRefs[index].offsetLeft}px)`
     }
   }
@@ -212,9 +210,7 @@ const Manager: React.FC = () => {
     } else {
       setValue(store.active.value)
       setModifiers(store.active.modifiers)
-      // @ts-ignore
       handleTypeClick(store.active.mode)
-      // @ts-ignore
       inputRef.current.focus()
     }
   }, [store.active])
@@ -224,11 +220,8 @@ const Manager: React.FC = () => {
    * starts to type the channel name in "regex" mode.
    */
   useEffect(() => {
-    // @ts-ignore
     if (isRegex && entryValue.length === 1) {
-      // @ts-ignore
       inputRef.current.focus()
-      // @ts-ignore
       inputRef.current.setSelectionRange(2, 2)
     }
   }, [entryValue.length])
